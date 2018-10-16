@@ -31,6 +31,8 @@ int main(int argc, char **argv)
             MPI_Send(A + (i - 1) * 10, 10, MPI_INT, i, tagA, MPI_COMM_WORLD);
             MPI_Send(B + (i - 1) * 10, 10, MPI_INT, i, tagB, MPI_COMM_WORLD);
         }
+        free(A);
+        free(B);
         C = (int *)malloc(M * sizeof(int));
         for (i = 1; i < size; i++)
         {
@@ -45,6 +47,7 @@ int main(int argc, char **argv)
             printf("%4d", C[i]);
         }
         printf("\n");
+        free(C);
     }
     if (rank != 0)
     {
@@ -62,6 +65,9 @@ int main(int argc, char **argv)
         // for (int k = 0; k < 10; k++)
         //     printf("%d ", F[k]);
         MPI_Send(F, 10, MPI_INT, 0, tagC, MPI_COMM_WORLD);
+        free(D);
+        free(E);
+        free(F);
         // printf("\nData sent\n");
     }
     MPI_Finalize();
