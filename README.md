@@ -1,1 +1,1 @@
-/*Lập trình song song với Open MPI*/
+*Lập trình song song với Open MPI*
